@@ -1,31 +1,3 @@
-//- extends layout
-
-//- block content
-//-   h1 #{title}: #{bookinstance.imprint}
-
-//-   if bookinstance.length
-
-//-     p #[strong Delete the following books before attempting to delete this bookinstance.]
-
-//-     div(style='margin-left:20px;margin-top:20px')
-
-//-       h4 Books
-
-//-       dl
-//-       each book in book
-//-         dt
-//-           a(href=book.url) #{book.title}
-//-         dd #{book.summary}
-
-//-   else
-//-     p Do you really want to delete this Book Instance?
-
-//-     form(method='POST' action='')
-//-       div.form-group
-//-         input#id.form-control(type='hidden' name='id' required='true', value=bookinstance._id )
-
-//-       button.btn.btn-primary(type='submit') Delete
-
 extends layout
 
 block content
