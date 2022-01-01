@@ -21,6 +21,24 @@ app.set('port', port);
 
 var server = http.createServer(app);
 
+var io = require('socket.io')(server)
+
+//tự động subscribe(bắt sự kiện) connection khi có client kết nối vào socket
+io.on('connection', function(client) {
+  console.log('Client connected ...')
+  //bắt sự kiện phóng ra từ client khi connect vào client (không cần thiết lắm)
+  client.on('join', function (data) {
+      console.log(data)
+  })
+  //bắt sự kiện phóng ra từ client , event này được tạo trong phần handle submit form chat message
+  client.on('messages',function(data) {
+      //phóng ra sự kiện để gửi tin nhắn về client đẫ gửi data message
+      client.emit('thread', data)
+      //phóng ra sự kiện cho toàn bộ client đã kết nôi đến socket này, nếu ko có dòng này thì realtime ko có ý nghĩa
+      client.broadcast.emit('thread',data)
+  })
+})
+
 /**
  * Listen on provided port, on all network interfaces.
  */
