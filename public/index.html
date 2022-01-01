@@ -23,7 +23,7 @@
 
     <script>
         //biến đối tượng socket io được tạo mà ko cần required vì nó được tạo từ server và kẹp vào file index.html gửi đến client
-        var socket = io.connect('http://localhost:3000')
+        var socket = io.connect()
         //khi tạo đối tượng socket từ io.connect sẽ phóng ra sự kiện connect tới socket của server
         socket.on('connect', function (data) {
             //phóng ra sự kiện join khi connect được vào socket của server (ko cần thiết)
