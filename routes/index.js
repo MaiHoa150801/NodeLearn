@@ -1,9 +1,12 @@
 var express = require("express");
 var router = express.Router();
-var passport = require("passport");
-var Account = require("../models/account");
+var passport = require('passport');
+var Account = require('../models/account');
+var book_controller = require('../controllers/bookController'); 
+
+var nodemailer = require('nodemailer');
 var Admin = require("../controllers/adminController");
-var nodemailer = require("nodemailer");
+
 
 var transporter = nodemailer.createTransport({
   service: "gmail",
@@ -14,9 +17,20 @@ var transporter = nodemailer.createTransport({
 });
 
 /* GET home page. */
-router.get("/", function (req, res, next) {
-  // res.redirect('/catalog');
-  res.render("index", { user: req.user });
+router.get('/', function (req, res, next) {
+  console.log(req.user);
+  if (!req.user) {
+    res.render('index');
+  };
+  if (req.user) {
+    res.render('index', { user: req.user });
+  }
+});
+
+/* GET home page. */
+router.get('/homepage', function (req, res, next) {
+  console.log(req.user);
+  res.render('index', { user: req.user });
 });
 
 //Admin
@@ -104,7 +118,19 @@ router.get("/logout", function (req, res) {
   res.redirect("/");
 });
 
-router.get("/ping", function (req, res) {
+router.get('/loginadmin', function (req, res) {
+  res.render('loginadmin', { user: req.user });
+});
+
+router.post('/loginadmin', function (req, res) {
+  if (req.body.email == 'hoa' && req.body.password == 'admin12345') {
+    res.redirect('/dashboard');
+  };
+});
+
+router.get('/dashboard', book_controller.index);
+
+router.get('/ping', function (req, res) {
   res.status(200).send("pong!");
 });
 
