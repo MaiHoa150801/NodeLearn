@@ -15,7 +15,7 @@ var Book = require('./models/book')
 var Author = require('./models/author')
 var Genre = require('./models/genre')
 var BookInstance = require('./models/bookinstance')
-
+var Account = require('./models/account')
 
 var mongoose = require('mongoose');
 var mongoDB = userArgs[0];
@@ -28,6 +28,21 @@ var authors = []
 var genres = []
 var books = []
 var bookinstances = []
+var accounts = []
+
+function accountCreate(gmail, username, password, cd) {
+  accountdetail = {gmail: gmail, username: username, password: password }
+  var account = new Account(accountdetail);
+  account.save(function (err) {
+    if (err) {
+      cd(err, null)
+      return
+    }
+    console.log('New Account: ' + account);
+    accounts.push(account)
+    cb(null, account)
+  });
+}
 
 function authorCreate(first_name, family_name, d_birth, d_death, cb) {
   authordetail = {first_name:first_name , family_name: family_name }
@@ -211,7 +226,8 @@ function createBookInstances(cb) {
 async.series([
     createGenreAuthors,
     createBooks,
-    createBookInstances
+    createBookInstances,
+    accountCreate
 ],
 // Optional callback
 function(err, results) {
