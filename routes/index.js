@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 var Account = require('../models/account');
-// var sendgrid = require('sendgrid')(hoa.le22, znngacrsnkkwbqxc);
 
 var nodemailer = require('nodemailer');
 
@@ -26,30 +25,19 @@ router.get('/register', function (req, res) {
 
 router.post('/register', function (req, res) {
   Account.register(new Account({ email: req.body.email }), req.body.password, function (err, account) {
-    // if (err) {
-    //   return res.render("register", { info: "Sorry. That username already exists. Try again." });
-    // }
+    if (err) {
+      return res.render("register", { info: "Sorry. That username already exists. Try again." });
+    }
 
     //send email verification
-    // var authenticationURL = 'http://localhost:3000/verify?authToken=' + account.authToken;
-    // sendgrid.send({
-    //   to: account.email,
-    //   from: 'hoa.le22@student.passerellesnumeriques.org',
-    //   subject: 'Confirm your email',
-    //   html: '<a target=_blank href=\"' + authenticationURL + '\">Confirm your email</a>'
-    // }, function (err, json) {
-    //   if (err) { return console.error(err); }
+    var authenticationURL = 'http://localhost:3000/verify?authToken=' + account.authToken;
 
-    //   res.redirect('/email-verification');
-    // });
     //the code for affirmation
     var mailOptions = {
       from: 'myemail@gmail.com',
-      to: 'hoa.le22@student.passerellesnumeriques.org',
+      to: account.email,
       subject: 'Sending Email using Node.js',
-      // html: '<a target=_blank href=\"' + authenticationURL + '\">Confirm your email</a>'
-      html: '<a target=_blank href=\"' + 'helo' + '\">Confirm your email</a>'
-
+      html: '<a target=_blank href=\"' + authenticationURL + '\">Confirm your email</a>'
     };
 
     transporter.sendMail(mailOptions, function (error, info) {
