@@ -66,6 +66,51 @@ head
             a.sidebar-link.waves-effect.waves-dark.sidebar-link(href='' aria-expanded='false')
               i.fa.fa-user(aria-hidden='true')
               span.hide-menu Profile
+          // User Profile
+          li.sidebar-item.pt-2
+            a.sidebar-link.waves-effect.waves-dark.sidebar-link(href='/catalog/books' aria-expanded='false')
+              i.far.fa-clock(aria-hidden='true')
+              span.hide-menu All Book
+          // User Profile
+          li.sidebar-item.pt-2
+            a.sidebar-link.waves-effect.waves-dark.sidebar-link(href='/catalog/authors' aria-expanded='false')
+              i.far.fa-clock(aria-hidden='true')
+              span.hide-menu All authors
+          // User Profile
+          li.sidebar-item.pt-2
+            a.sidebar-link.waves-effect.waves-dark.sidebar-link(href='/catalog/genres' aria-expanded='false')
+              i.far.fa-clock(aria-hidden='true')
+              span.hide-menu All genres
+          // User Profile
+          li.sidebar-item.pt-2
+            a.sidebar-link.waves-effect.waves-dark.sidebar-link(href='/catalog/bookinstances' aria-expanded='false')
+              i.far.fa-clock(aria-hidden='true')
+              span.hide-menu All book-instances
+          // User Profile
+          li.sidebar-item.pt-2
+            a.sidebar-link.waves-effect.waves-dark.sidebar-link(href='/catalog/author/create' aria-expanded='false')
+              i.far.fa-clock(aria-hidden='true')
+              span.hide-menu Create new author
+          // User Profile
+          li.sidebar-item.pt-2
+            a.sidebar-link.waves-effect.waves-dark.sidebar-link(href='/catalog/genre/create' aria-expanded='false')
+              i.far.fa-clock(aria-hidden='true')
+              span.hide-menu Create new genre
+          // User Profile
+          li.sidebar-item.pt-2
+            a.sidebar-link.waves-effect.waves-dark.sidebar-link(href='/catalog/bookinstance/create' aria-expanded='false')
+              i.far.fa-clock(aria-hidden='true')
+              span.hide-menu Create new book instance (copy)
+          // User Profile
+          li.sidebar-item.pt-2
+            a.sidebar-link.waves-effect.waves-dark.sidebar-link(href='/catalog/book/create' aria-expanded='false')
+              i.far.fa-clock(aria-hidden='true')
+              span.hide-menu Create new book   
+          // User Profile
+          li.sidebar-item.pt-2
+            a.sidebar-link.waves-effect.waves-dark.sidebar-link(href='http://localhost:3001/' aria-expanded='false')
+              i.far.fa-clock(aria-hidden='true')
+              span.hide-menu chat      
           li.sidebar-item
           form(method='GET' action="/logout-admin")
             button.btn.btn-danger.text-white.logout-button
@@ -162,7 +207,6 @@ head
 // ==============================================================
 // ==============================================================
 // All Jquery
-// ==============================================================
 script(src='plugins/bower_components/jquery/dist/jquery.min.js')
 
 script(src='plugins/bower_components/jquery-sparkline/jquery.sparkline.min.js')
