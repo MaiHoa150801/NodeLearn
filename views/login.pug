@@ -1,16 +1,22 @@
 extends layout
 
 block content
-  h2 Log In
-  
-  form(action="/login",method="post")
-    div
-      label Email
-      input(type="text",name="email")
-    
-    div
-      label Password
-      input(type="password",name="password")
-    
-    div
-      input(type="submit",value="Log In")
+  .col-xs-12.col-sm-6.col-sm-offset-2.col-md-offset-3
+      .panel.panel-default
+        .panel-heading
+          h3.panel-title Log In
+        .panel-body
+          form(action="/login",method="post")
+            p=info
+            .row
+              .col-xs-5.col-sm-5.col-md-5
+                .form-group
+                  input#name.form-control.input-sm(type='text' name='email' placeholder=' Email')
+              .col-xs-5.col-sm-5.col-md-5
+                .form-group
+                  input#number.form-control.input-sm(type='password' name='password' placeholder='Pass') 
+              .col-xs-2.col-sm-2.col-md-2
+                .form-group
+                  input.btn.btn-info.btn-block(type='submit' value='Log In')
+                  
+        
