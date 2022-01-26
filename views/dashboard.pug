@@ -7,8 +7,10 @@ head
   // Custom CSS
   link(rel='stylesheet' href='css/style.min.css')
   link(rel='stylesheet' href='css/styleAdmin.css')
+  script(src="https://code.jquery.com/jquery-3.5.1.slim.min.js", integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj", crossorigin="anonymous")
+  script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js", integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV", crossorigin="anonymous")
+    
 // ==============================================================
-// Preloader - style you can find in spinners.css
 // ==============================================================
 .preloader
   .lds-ripple
@@ -65,11 +67,29 @@ head
           li.sidebar-item
             a.sidebar-link.waves-effect.waves-dark.sidebar-link(href='' aria-expanded='false')
               i.fa.fa-user(aria-hidden='true')
-              span.hide-menu Profile
-          li.sidebar-item
-          form(method='GET' action="/logout-admin")
-            button.btn.btn-danger.text-white.logout-button
-              | Logout
+              span.hide-menu Account
+              li.sidebar-item
+                a.sidebar-link.waves-effect.waves-dark.sidebar-link(href='/catalog/books') All books
+              li.sidebar-item
+                a.sidebar-link.waves-effect.waves-dark.sidebar-link(href='/catalog/authors') All authors
+              li.sidebar-item
+                a.sidebar-link.waves-effect.waves-dark.sidebar-link(href='/catalog/genres') All genres
+              li.sidebar-item
+                a.sidebar-link.waves-effect.waves-dark.sidebar-link(href='/catalog/bookinstances') All book-instances
+              li.sidebar-item
+                hr
+              li.sidebar-item
+                a.sidebar-link.waves-effect.waves-dark.sidebar-link(href='/catalog/author/create') Create new author
+              li.sidebar-item
+                a.sidebar-link.waves-effect.waves-dark.sidebar-link(href='/catalog/genre/create') Create new genre
+              li.sidebar-item
+                a.sidebar-link.waves-effect.waves-dark.sidebar-link(href='/catalog/book/create') Create new book
+              li.sidebar-item
+                a.sidebar-link.waves-effect.waves-dark.sidebar-link(href='/catalog/bookinstance/create') Create new book instance (copy)
+            li.sidebar-item
+              form(method='GET' action="/logout-admin")
+                button.btn.btn-danger.text-white.logout-button
+                  | Logout
       // End Sidebar navigation
     // End Sidebar scroll
   // ==============================================================
@@ -100,7 +120,7 @@ head
       .row.justify-content-center
         .col-lg-4.col-md-12
           .white-box.analytics-info
-            h3.box-title Total Visit
+            h3.box-title Total Author
             ul.list-inline.two-part.d-flex.align-items-center.mb-0
               li
                 #sparklinedash
@@ -111,10 +131,10 @@ head
                   vertical-align: top;\
                   ')
               li.ms-auto
-                span.counter.text-success 659
+                span.counter.text-success !{data.book_count}
         .col-lg-4.col-md-12
           .white-box.analytics-info
-            h3.box-title Total Page Views
+            h3.box-title Total Book
             ul.list-inline.two-part.d-flex.align-items-center.mb-0
               li
                 #sparklinedash2
@@ -125,10 +145,10 @@ head
                   vertical-align: top;\
                   ')
               li.ms-auto
-                span.counter.text-purple 869
+                span.counter.text-purple !{data.author_count}
         .col-lg-4.col-md-12
           .white-box.analytics-info
-            h3.box-title Unique Visitor
+            h3.box-title Genres
             ul.list-inline.two-part.d-flex.align-items-center.mb-0
               li
                 #sparklinedash3
@@ -139,7 +159,7 @@ head
                   vertical-align: top;\
                   ')
               li.ms-auto
-                span.counter.text-info 911
+                span.counter.text-info !{data.genre_count}
       // ==============================================================
       // PRODUCTS YEARLY SALES
       // ==============================================================
