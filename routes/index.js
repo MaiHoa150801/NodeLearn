@@ -118,6 +118,11 @@ router.get("/logout", function (req, res) {
   res.redirect("/");
 });
 
+router.get("/chat", function (req, res) {
+  // res.redirect("/chat");
+  res.render("chat", {});
+});
+
 router.get('/loginadmin', function (req, res) {
   res.render('loginadmin', { user: req.user });
 });

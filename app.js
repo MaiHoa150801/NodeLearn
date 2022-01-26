@@ -8,6 +8,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var helmet = require('helmet');
 var dotenv = require('dotenv');
+var firebase = require('firebase');
 // dotenv.load();
 
 
