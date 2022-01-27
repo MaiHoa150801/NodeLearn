@@ -2,11 +2,11 @@ var express = require("express");
 var router = express.Router();
 var passport = require('passport');
 var Account = require('../models/account');
-var book_controller = require('../controllers/bookController'); 
-var chatController = require('../controllers/chatController'); 
+var book_controller = require('../controllers/bookController');
+var chatController = require('../controllers/chatController');
 var nodemailer = require('nodemailer');
 var Admin = require("../controllers/adminController");
-
+var Book = require('../models/book');
 
 var transporter = nodemailer.createTransport({
   service: "gmail",
@@ -18,21 +18,33 @@ var transporter = nodemailer.createTransport({
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  console.log(req.user);
   if (!req.user) {
-    res.render('index');
+    Book.find({}, 'title author')
+      .sort({ title: 1 })
+      .populate('author')
+      .populate('summary')
+      .populate('isbn')
+      .populate('genre')
+      .exec(function (err, list_books) {
+        if (err) { return next(err); }
+        //Successful, so render
+        res.render('index', { title: 'Book List', book_list: list_books });
+      });
   };
   if (req.user) {
-    res.render('index', { user: req.user });
+    Book.find({}, 'title author')
+      .sort({ title: 1 })
+      .populate('author')
+      .populate('summary')
+      .populate('isbn')
+      .populate('genre')
+      .exec(function (err, list_books) {
+        if (err) { return next(err); }
+        //Successful, so render
+        res.render('index', { user: req.user }, { title: 'Book List', book_list: list_books });
+      });
   }
 });
-
-/* GET home page. */
-router.get('/homepage', function (req, res, next) {
-  console.log(req.user);
-  res.render('index', { user: req.user });
-});
-
 
 //Admin
 router.get("/admin", Admin.dashboard_get);
@@ -103,7 +115,17 @@ router.get("/login", function (req, res) {
 });
 
 router.get("/unauthorized", function (req, res) {
-  res.render("index", { info: "Unauthorized" });
+  Book.find({}, 'title author')
+    .sort({ title: 1 })
+    .populate('author')
+    .populate('summary')
+    .populate('isbn')
+    .populate('genre')
+    .exec(function (err, list_books) {
+      if (err) { return next(err); }
+      //Successful, so render
+      res.render('index', { title: 'Book List', book_list: list_books, info: "Unauthorized" });
+    });
 });
 
 router.post(
@@ -119,19 +141,9 @@ router.get("/logout", function (req, res) {
   res.redirect("/");
 });
 
-router.get("/chat",chatController.mes_list);
+router.get("/chat", chatController.mes_list);
 //post chat
 router.post("/chat", chatController.mes_post);
-
-router.get('/loginadmin', function (req, res) {
-  res.render('loginadmin', { user: req.user });
-});
-
-router.post('/loginadmin', function (req, res) {
-  if (req.body.email == 'hoa' && req.body.password == 'admin12345') {
-    res.redirect('/dashboard');
-  };
-});
 
 router.get('/dashboard', book_controller.index);
 
