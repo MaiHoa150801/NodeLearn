@@ -68,28 +68,28 @@ head
             a.sidebar-link.waves-effect.waves-dark.sidebar-link(href='' aria-expanded='false')
               i.fa.fa-user(aria-hidden='true')
               span.hide-menu Account
-              li.sidebar-item
-                a.sidebar-link.waves-effect.waves-dark.sidebar-link(href='/catalog/books') All books
-              li.sidebar-item
-                a.sidebar-link.waves-effect.waves-dark.sidebar-link(href='/catalog/authors') All authors
-              li.sidebar-item
-                a.sidebar-link.waves-effect.waves-dark.sidebar-link(href='/catalog/genres') All genres
-              li.sidebar-item
-                a.sidebar-link.waves-effect.waves-dark.sidebar-link(href='/catalog/bookinstances') All book-instances
-              li.sidebar-item
-                hr
-              li.sidebar-item
-                a.sidebar-link.waves-effect.waves-dark.sidebar-link(href='/catalog/author/create') Create new author
-              li.sidebar-item
-                a.sidebar-link.waves-effect.waves-dark.sidebar-link(href='/catalog/genre/create') Create new genre
-              li.sidebar-item
-                a.sidebar-link.waves-effect.waves-dark.sidebar-link(href='/catalog/book/create') Create new book
-              li.sidebar-item
-                a.sidebar-link.waves-effect.waves-dark.sidebar-link(href='/catalog/bookinstance/create') Create new book instance (copy)
-            li.sidebar-item
-              form(method='GET' action="/logout-admin")
-                button.btn.btn-danger.text-white.logout-button
-                  | Logout
+          li.sidebar-item
+            a.sidebar-link.waves-effect.waves-dark.sidebar-link(href='/catalog/books') All books
+          li.sidebar-item
+            a.sidebar-link.waves-effect.waves-dark.sidebar-link(href='/catalog/authors') All authors
+          li.sidebar-item
+            a.sidebar-link.waves-effect.waves-dark.sidebar-link(href='/catalog/genres') All genres
+          li.sidebar-item
+            a.sidebar-link.waves-effect.waves-dark.sidebar-link(href='/catalog/bookinstances') All book-instances
+          li.sidebar-item
+            hr
+          li.sidebar-item
+            a.sidebar-link.waves-effect.waves-dark.sidebar-link(href='/catalog/author/create') Create new author
+          li.sidebar-item
+            a.sidebar-link.waves-effect.waves-dark.sidebar-link(href='/catalog/genre/create') Create new genre
+          li.sidebar-item
+            a.sidebar-link.waves-effect.waves-dark.sidebar-link(href='/catalog/book/create') Create new book
+          li.sidebar-item
+            a.sidebar-link.waves-effect.waves-dark.sidebar-link(href='/catalog/bookinstance/create') Create new book instance (copy)
+        li.sidebar-item
+          form(method='GET' action="/logout-admin")
+            button.btn.btn-danger.text-white.logout-button
+                Logout
       // End Sidebar navigation
     // End Sidebar scroll
   // ==============================================================
@@ -182,7 +182,6 @@ head
 // ==============================================================
 // ==============================================================
 // All Jquery
-// ==============================================================
 script(src='plugins/bower_components/jquery/dist/jquery.min.js')
 
 script(src='plugins/bower_components/jquery-sparkline/jquery.sparkline.min.js')

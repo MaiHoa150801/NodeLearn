@@ -3,7 +3,7 @@ var router = express.Router();
 var passport = require('passport');
 var Account = require('../models/account');
 var book_controller = require('../controllers/bookController'); 
-
+var chatController = require('../controllers/chatController'); 
 var nodemailer = require('nodemailer');
 var Admin = require("../controllers/adminController");
 
@@ -32,6 +32,7 @@ router.get('/homepage', function (req, res, next) {
   console.log(req.user);
   res.render('index', { user: req.user });
 });
+
 
 //Admin
 router.get("/admin", Admin.dashboard_get);
@@ -117,6 +118,10 @@ router.get("/logout", function (req, res) {
   req.logout();
   res.redirect("/");
 });
+
+router.get("/chat",chatController.mes_list);
+//post chat
+router.post("/chat", chatController.mes_post);
 
 router.get('/loginadmin', function (req, res) {
   res.render('loginadmin', { user: req.user });

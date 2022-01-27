@@ -1,0 +1,18 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1')
+  title Firebase RealTime Chat
+  link(rel='stylesheet' href='./css/index.css')
+header
+  h2 Firebase RealTime Chat
+#chat
+  // messages will display here
+  ul#messages
+    each data in message_list
+      li #{data.text}
+  // form to send message
+  form#message-form(method='POST' action="/chat")
+    input#message-input(type='text', name ='message_content')
+    button#message-btn(type='submit') Send
+//- script(src='./js/scripts.js')
