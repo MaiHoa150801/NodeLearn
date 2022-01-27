@@ -9,12 +9,10 @@ header
 #chat
   // messages will display here
   ul#messages
+    each data in message_list
+      li #{data.text}
   // form to send message
-  form#message-form
-    input#message-input(type='text')
+  form#message-form(method='POST' action="/chat")
+    input#message-input(type='text', name ='message_content')
     button#message-btn(type='submit') Send
-// scripts
-script(src='https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js')
-script(src='https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js')
-script(src='https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js')
-script(src='./js/scripts.js')
+//- script(src='./js/scripts.js')
