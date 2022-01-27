@@ -75,7 +75,7 @@ router.post("/register", function (req, res) {
       var mailOptions = {
         from: "myemail@gmail.com",
         to: account.email,
-        subject: "Sending Email using Node.js",
+        subject: "PNV Local Library - Confirm Email",
         html:
           '<a target=_blank href="' +
           authenticationURL +
@@ -146,9 +146,5 @@ router.get("/chat", chatController.mes_list);
 router.post("/chat", chatController.mes_post);
 
 router.get('/dashboard', book_controller.index);
-
-router.get('/ping', function (req, res) {
-  res.status(200).send("pong!");
-});
 
 module.exports = router;

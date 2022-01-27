@@ -5,12 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var compression = require('compression');
 var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
 var helmet = require('helmet');
-var dotenv = require('dotenv');
-// dotenv.load();
-
-
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
