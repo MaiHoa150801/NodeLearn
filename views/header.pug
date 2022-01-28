@@ -14,5 +14,10 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
           li.nav-item
             a.nav-link(href='/register') Register
         if (user)
-          p You are currently logged in as #{user.email}
-          a(href="/logout") Logout You are currently logged in as #{user.email}
+          li.nav-item
+            a.nav-link(href='/chat') Chat
+          li.nav-item
+            a.nav-link #{user.name}
+          li.nav-item
+            a.nav-link(href='/logout') Logout
+          //- a(href="/logout") Logout You are currently logged in as #{user.name}

@@ -20,7 +20,6 @@ var transporter = nodemailer.createTransport({
 router.get('/', function (req, res, next) {
   if (!req.user) {
     Book.find({}, 'title author')
-      .sort({ title: 1 })
       .populate('author')
       .populate('summary')
       .populate('isbn')
@@ -33,7 +32,6 @@ router.get('/', function (req, res, next) {
   };
   if (req.user) {
     Book.find({}, 'title author')
-      .sort({ title: 1 })
       .populate('author')
       .populate('summary')
       .populate('isbn')
@@ -41,7 +39,7 @@ router.get('/', function (req, res, next) {
       .exec(function (err, list_books) {
         if (err) { return next(err); }
         //Successful, so render
-        res.render('index', { user: req.user }, { title: 'Book List', book_list: list_books });
+        res.render('index', { user: req.user, title: 'Book List', book_list: list_books });
       });
   }
 });
@@ -58,7 +56,7 @@ router.get("/register", function (req, res) {
 
 router.post("/register", function (req, res) {
   Account.register(
-    new Account({ email: req.body.email }),
+    new Account({ email: req.body.email, name: req.body.name }),
     req.body.password,
     function (err, account) {
       if (err) {
